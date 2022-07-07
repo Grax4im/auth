@@ -25,7 +25,7 @@ public class autentication {
         if(user == null || !(user.getPassword().equals(enterUser.getPassword()))) return Response.status(404).build();
 
         //criacao do JWT
-        String jwt = Jwt.issuer("http://localhost:8081")
+        String jwt = Jwt.issuer("http://localhost:8081").expiresIn(60000)
         .upn(user.getEmail())
         .groups(new HashSet<>(Arrays.asList(user.getLevel())))
         .claim(Claims.full_name, user.getName())
